@@ -21,6 +21,7 @@ void insertFront(struct Node** head_ref, int data, int* size) {
     newNode->next = *head_ref;
     *head_ref = newNode;
     (*size)++; // Increment the size
+    printf("%d has been inserted at the front.\n", data);
 }
 
 // Insert at the rear (end) of the list
@@ -39,6 +40,7 @@ void insertRear(struct Node** head_ref, int data, int* size) {
     }
     last->next = newNode;
     (*size)++; // Increment the size
+    printf("%d has been inserted at the rear.\n", data);
 }
 
 // Insert at a specific position
@@ -60,6 +62,7 @@ void insertAtPosition(struct Node** head_ref, int data, int position, int* size)
         }
         newNode->next = temp->next;
         temp->next = newNode;
+        printf("%d has been inserted at position %d.\n", data, position);
     }
 
     (*size)++; // Increment the size
@@ -76,6 +79,7 @@ void deleteFront(struct Node** head_ref, int* size) {
     *head_ref = (*head_ref)->next;
     free(temp);
     (*size)--; // Decrement the size
+    printf("Front node deleted.\n");
 }
 
 // Delete from the rear (end) of the list
@@ -105,6 +109,7 @@ void deleteRear(struct Node** head_ref, int* size) {
     prev->next = NULL;
     free(temp);
     (*size)--; // Decrement the size
+    printf("Rear node deleted.\n");
 }
 
 // Delete from a specific position
@@ -130,6 +135,7 @@ void deleteAtPosition(struct Node** head_ref, int position, int* size) {
     }
 
     (*size)--; // Decrement the size
+    printf("Node at position %d deleted.\n", position);
 }
 
 // Function to display the linked list and index each node
@@ -174,7 +180,7 @@ int main() {
                 printf("Enter the value to insert at front: ");
                 scanf("%d", &value);
                 insertFront(&head, value, &size);
-                printf("%d has been inserted at the front.\n", value);
+                displayList(head,size);
                 break;
 
             case 2:
@@ -182,7 +188,7 @@ int main() {
                 printf("Enter the value to insert at rear: ");
                 scanf("%d", &value);
                 insertRear(&head, value, &size);
-                printf("%d has been inserted at the rear.\n", value);
+                displayList(head,size);
                 break;
 
             case 3:
@@ -192,19 +198,19 @@ int main() {
                 printf("Enter the position to insert at: ");
                 scanf("%d", &position);
                 insertAtPosition(&head, value, position, &size);
-                printf("%d has been inserted at position %d.\n", value, position);
+                displayList(head,size);
                 break;
 
             case 4:
                 // Delete from the front
                 deleteFront(&head, &size);
-                printf("Front node deleted.\n");
+                displayList(head,size);
                 break;
-
+                
             case 5:
                 // Delete from the rear
                 deleteRear(&head, &size);
-                printf("Rear node deleted.\n");
+                displayList(head,size);
                 break;
 
             case 6:
@@ -212,7 +218,7 @@ int main() {
                 printf("Enter the position to delete from: ");
                 scanf("%d", &position);
                 deleteAtPosition(&head, position, &size);
-                printf("Node at position %d deleted.\n", position);
+                displayList(head,size);
                 break;
 
             case 7:
